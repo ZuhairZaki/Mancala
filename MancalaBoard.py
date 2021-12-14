@@ -1,6 +1,6 @@
 from copy import *
 
-class Board:
+class BoardState:
     def __init__(self,n=6,player=0):
         self.pockets = n
         self.player = player
@@ -50,6 +50,13 @@ class Board:
             if p!=0:
                 terminal = False
                 break
+
+        if terminal:
+            for i in range(self.pockets):
+                self.player_stores[0] += self.player_side[0][i]
+                self.player_side[0][i] = 0
+                self.player_stores[1] += self.player_side[1][i]
+                self.player_side[1][i] = 0
 
         return terminal
 

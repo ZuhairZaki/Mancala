@@ -37,19 +37,20 @@ class BoardState:
         return actions
 
     def is_terminal(self):
-        terminal = True
-        for p in self.player_side[0]:
-            if p!=0:
-                terminal = False
-                break
-        
-        if terminal:
-            return terminal
+        terminal = False
 
-        for p in self.player_side[1]:
-            if p!=0:
-                terminal = False
-                break
+        sum = 0
+        for p in self.player_side[0]:
+            sum += p
+        if sum==0:
+            terminal = True
+
+        if not terminal:
+            sum = 0
+            for p in self.player_side[1]:
+                sum += p
+            if sum==0:
+                terminal = True
 
         if terminal:
             for i in range(self.pockets):

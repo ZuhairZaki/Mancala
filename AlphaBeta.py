@@ -1,18 +1,20 @@
 from MancalaBoard import *
 from Heuristics import *
 import math
+import random
 
 def alpha_beta_decision(board: BoardState,alpha,beta,depth,heu_func):
     if board.is_terminal() or depth==0:
-        return heu_dict.get(heu_func)(board)
+        return heu_dict.get(heu_func)(board), -1
 
     if board.player==0:
         best_val = -math.inf
         best_move = -1
         valid_moves = board.get_legal_moves()
+        #random.shuffle(valid_moves)
         for m in valid_moves:
             res_board = board.perform_move(m)
-            val, = alpha_beta_decision(res_board,alpha,beta,depth-1,heu_func)
+            val,_ = alpha_beta_decision(res_board,alpha,beta,depth-1,heu_func)
             if val>best_val:
                 best_val = val
                 best_move = m
@@ -26,9 +28,10 @@ def alpha_beta_decision(board: BoardState,alpha,beta,depth,heu_func):
         best_val = math.inf
         best_move = -1
         valid_moves = board.get_legal_moves()
+        #random.shuffle(valid_moves)
         for m in valid_moves:
             res_board = board.perform_move(m)
-            val, = alpha_beta_decision(res_board,alpha,beta,depth-1,heu_func)
+            val,_ = alpha_beta_decision(res_board,alpha,beta,depth-1,heu_func)
             if val<best_val:
                 best_val = val
                 best_move = m

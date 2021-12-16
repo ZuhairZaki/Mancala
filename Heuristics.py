@@ -77,7 +77,7 @@ def heuristic5(board: BoardState):
     w2 = 0.5
     w3 = 0.7
     w4 = -0.3
-    w5 = 0.4
+    w5 = 0.7
     return w1*beans_difference(board) + w2*beans_hoarded(board) + w3*repeat_turns(board.player_side[0]) \
     + w4*repeat_turns(board.player_side[1]) + w5*maximize_capture(board.player_side[0],board.player_side[1]) 
 
@@ -86,8 +86,8 @@ def heuristic6(board: BoardState):
     w2 = 0.5
     w3 = 0.7
     w4 = -0.3
-    w5 = 0.4
-    w6 = -0.1
+    w5 = 0.7
+    w6 = -0.3
     return w1*beans_difference(board) + w2*beans_hoarded(board) + w3*repeat_turns(board.player_side[0]) \
     + w4*repeat_turns(board.player_side[1]) + w5*maximize_capture(board.player_side[0],board.player_side[1]) \
     + w6*maximize_capture(board.player_side[1],board.player_side[0])

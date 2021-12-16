@@ -67,11 +67,14 @@ elif choice==2:
     else:
         print("Tie!!!\n\n")
 elif choice==3:
-    curr_board = BoardState()
+    curr_board = BoardState(player=1)
     print(curr_board)
     while not curr_board.is_terminal():
         curr_player = curr_board.player
-        val, ai_move = alpha_beta_decision(curr_board,-math.inf,math.inf,11,"heuristic6")
+        if curr_player==0:
+            val, ai_move = alpha_beta_decision(curr_board,-math.inf,math.inf,11,"heuristic4")
+        else:
+            val, ai_move = alpha_beta_decision(curr_board,-math.inf,math.inf,11,"heuristic4")
         print("Player ",curr_player+1," performing move ",ai_move,"\n\n")
         curr_board = curr_board.perform_move(ai_move)
         print(curr_board)
